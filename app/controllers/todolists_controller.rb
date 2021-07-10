@@ -23,11 +23,11 @@ class TodolistsController < ApplicationController
   def show
     @list = List.find(params[:id])
   end
-  
+
   def edit
     @list = List.find(params[:id])
   end
-  
+
   def update
     list = List.find(params[:id])
     #viewに情報を渡す必要がないためローカル変数
@@ -35,10 +35,16 @@ class TodolistsController < ApplicationController
     redirect_to todolist_path(list.id)
   end
 
+  def destroy
+    list = List.find(params[:id]) #データ（レコード）を１件取得
+    list.destroy #データ（レコード）を削除
+    redirect_to todolists_path #投稿一覧画面へリダイレクト
+  end
+
 private
 #ストロングぱらめーた
 def list_params
-  params.require(:list).permit(:title, :body)
+  params.require(:list).permit(:title, :body, :image)
   #viewからコントローラーに情報を送るときはparamsになる
 end
 
