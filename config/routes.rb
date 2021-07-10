@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   #ここでは、「'todolists#show'の設定を、todolistとして利用できる」の意味
   get 'todolists/:id/edit' => 'todolists#edit', as: 'edit_todolist'
   patch 'todolists/:id' => 'todolists#update', as: 'update_todolist'
-
+#上記順番はとても大事になる（上から順に動作するため）
 end

@@ -2,6 +2,7 @@ class TodolistsController < ApplicationController
   def new
     #Viewへ渡すためのインスタンス変数にからのモデルオブジェクトを生産する。
     @list = List.new
+    #コントローラーからviewに情報を渡す場合
   end
 
   def create
@@ -16,6 +17,7 @@ class TodolistsController < ApplicationController
 
   def index
     @lists = List.all
+    #Listモデルから全ての情報を@listsに飛ぶ
   end
 
   def show
@@ -28,6 +30,7 @@ class TodolistsController < ApplicationController
   
   def update
     list = List.find(params[:id])
+    #viewに情報を渡す必要がないためローカル変数
     list.update(list_params)
     redirect_to todolist_path(list.id)
   end
@@ -36,6 +39,7 @@ private
 #ストロングぱらめーた
 def list_params
   params.require(:list).permit(:title, :body)
+  #viewからコントローラーに情報を送るときはparamsになる
 end
 
 end
